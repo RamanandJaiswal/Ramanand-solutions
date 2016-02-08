@@ -66,10 +66,10 @@ if __name__ == "__main__":
         
     	parsed=df.map(lambda x :(x['text'].encode('ascii','ignore'),x['id'],x['user']['name'],x['created_at'],x['source'],x['truncated'],x['in_reply_to_status_id'],x['in_reply_to_user_id'],x['favorited'],x['retweeted'],x['user']['favourites_count'],x['geo'],x['coordinates'],x['place'],x['user']['location'],x['retweet_count'],x['possibly_sensitive'],x['lang']))
     	parsed.pprint()
-	    cleaned_rdd=parsed.map(processTweet)
-      cleaned_rdd.pprint()
-      cleaned_rdd.saveAsTextFiles(hdfsPath +str(int(round(time.time() * 1000))))
-	    print('written to hdfs file....')
+	cleaned_rdd=parsed.map(processTweet)
+        cleaned_rdd.pprint()
+        cleaned_rdd.saveAsTextFiles(hdfsPath +str(int(round(time.time() * 1000))))
+	print('written to hdfs file....')
     	 
     except BaseException, e:
 	    print 'failed on_data,', str(e)
